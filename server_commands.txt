@@ -1,0 +1,12 @@
+# 查看各节点资源分配情况
+scontrol show node
+
+# 开启jupyter服务使用以下指令
+srun --nodelist=slurmd-3 --job-name=inference --gres=gpu:1 jupyter lab --ip 0.0.0.0 --port=30005
+
+# 直接抢占式，不会断连
+srun --partition=a800 --job-name=meta --gres=gpu:1 --cpus-per-task=8 --pty bash --nodelist=slurmd-4
+
+# CPU主机申请
+unset SLURM_JOB_ID
+srun --partition=a800 --nodelist=slurmd-2 --job-name=cpu --cpus-per-task=8 --pty bash 
