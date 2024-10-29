@@ -5,8 +5,9 @@ Modified from [Luther-Sparks/GPTWrapper (github.com)](https://github.com/Luther-
 **larknotice只需要复制larknotice.py即可，不依赖其他文件。**
 
 #### 效果演示
-![image](https://github.com/user-attachments/assets/06c37fe6-d640-48c9-a2a5-681db47e72ab)
 larknotice会在程序运行、程序出错和程序结束时通过飞书机器人汇报相关内容。
+![image](https://github.com/user-attachments/assets/06c37fe6-d640-48c9-a2a5-681db47e72ab)
+
 
 #### 前置条件
 
