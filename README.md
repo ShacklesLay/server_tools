@@ -1,6 +1,6 @@
 ### larknotice
 
-Modified based [Luther-Sparks/GPTWrapper (github.com)](https://github.com/Luther-Sparks/GPTWrapper)
+Modified from [Luther-Sparks/GPTWrapper (github.com)](https://github.com/Luther-Sparks/GPTWrapper)
 
 **larknotice只需要复制larknotice.py即可，不依赖其他文件。**
 
