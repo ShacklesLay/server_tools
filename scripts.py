@@ -11,7 +11,7 @@ import traceback
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 # Copy from https://github.com/Luther-Sparks/GPTWrapper/blob/master/larknotice.py
 # To set it, just add new larkbot in feishu gourp, copy the webhook url and paste it in the lark_sender function
-def lark_sender(webhook_url: str="https://open.feishu.cn/open-apis/bot/v2/hook/6b48f3ee-2174-4a39-8e92-1acadacc54c4", content: str=None):
+def lark_sender(webhook_url: str=None, content: str=None):
     """Lark sender wrapper: execute func, send a Lark notification with the end status
     (sucessfully finished or crashed) at the end. Also send a Lark notification before
     executing func.
@@ -26,7 +26,7 @@ def lark_sender(webhook_url: str="https://open.feishu.cn/open-apis/bot/v2/hook/6
         import scripts
         from scripts import lark_sender
         
-        @lark_sender()
+        @lark_sender(webhook_url=your_webhook_url)
         def train():
             print('training...')
             return 
