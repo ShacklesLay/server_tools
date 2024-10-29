@@ -2,6 +2,8 @@
 
 Modified based [Luther-Sparks/GPTWrapper (github.com)](https://github.com/Luther-Sparks/GPTWrapper)
 
+**larknotice只需要复制larknotice.py即可，不依赖其他文件。**
+
 #### 前置条件
 
 larknotice监听代码运行情况需要飞书创建一个群组（如果只想发给自己，可以不拉任何人来创建一个只包含自己的群组）
