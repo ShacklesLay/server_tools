@@ -22,7 +22,7 @@ def lark_sender(webhook_url: str="https://open.feishu.cn/open-apis/bot/v2/hook/6
         
     Example:
         import sys
-        sys.path.append("/remote-home1/cktan/server_tools/")
+        sys.path.append("/remote-home1/cktan/server_tools/") # Change to your `server_tools` path
         import scripts
         from scripts import lark_sender
         
