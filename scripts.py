@@ -9,7 +9,8 @@ import socket
 import traceback
 
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
-
+# Copy from https://github.com/Luther-Sparks/GPTWrapper/blob/master/larknotice.py
+# To set it, just add new larkbot in feishu gourp, copy the webhook url and paste it in the lark_sender function
 def lark_sender(webhook_url: str="https://open.feishu.cn/open-apis/bot/v2/hook/6b48f3ee-2174-4a39-8e92-1acadacc54c4", content: str=None):
     """Lark sender wrapper: execute func, send a Lark notification with the end status
     (sucessfully finished or crashed) at the end. Also send a Lark notification before
@@ -18,6 +19,19 @@ def lark_sender(webhook_url: str="https://open.feishu.cn/open-apis/bot/v2/hook/6
     Args:
         webhook_url (str, optional): The webhook URL to access your lark robot. Defaults to None.
         content (str, optional): The message you want to send. Defaults to None .
+        
+    Example:
+        import sys
+        sys.path.append("/remote-home1/cktan/server_tools/")
+        import scripts
+        from scripts import lark_sender
+        
+        @lark_sender()
+        def train():
+            print('training...')
+            return 
+
+        train()
     """
     bot = LarkBot(webhook_url)
 
@@ -117,7 +131,7 @@ def lark_sender(webhook_url: str="https://open.feishu.cn/open-apis/bot/v2/hook/6
 
 
 class LarkBot:
-    def __init__(self, hook_url="https://open.feishu.cn/open-apis/bot/v2/hook/6b48f3ee-2174-4a39-8e92-1acadacc54c4") -> None:
+    def __init__(self, hook_url=None) -> None:
         if hook_url is None:
             if 'LARK_HOOK' in os.environ:
             # 提取LARK_HOOK的值
