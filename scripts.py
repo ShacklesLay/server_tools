@@ -5,6 +5,11 @@ import pandas as pd
 import numpy as np
 import csv
 
+def get_rank_and_world_size():
+    rank = int(os.environ.get('RANK', 0))
+    world_size = int(os.environ.get('WORLD_SIZE', 1))
+    return rank, world_size
+
 # Copy from https://github.com/ShacklesLay/VLMEvalKit/blob/main/vlmeval/smp/file.py
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
