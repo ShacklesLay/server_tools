@@ -13,8 +13,8 @@
 
 export HF_ENDPOINT=https://hf-mirror.com
 # 模型
-srun huggingface-cli download --resume-download BAAI/Emu3-Chat --local-dir /remote-home1/share/models/Emu3-Chat --local-dir-use-symlinks False
+# srun huggingface-cli download --resume-download BAAI/Emu3-Chat --local-dir /remote-home1/share/models/Emu3-Chat --local-dir-use-symlinks False
 # 数据集
-# huggingface-cli download --repo-type dataset --resume-download liuhaotian/LLaVA-Pretrain --local-dir wikitext --local-dir-use-symlinks False
+huggingface-cli download --repo-type dataset --resume-download lmms-lab/LLaVA-ReCap-558K --local-dir /remote-home1/share/data/LLaVA-ReCap-558K --local-dir-use-symlinks False
 
 sync && echo "success"
