@@ -8,7 +8,7 @@ import traceback
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 # Copy from https://github.com/Luther-Sparks/GPTWrapper/blob/master/larknotice.py
 # To set it, just add new larkbot in feishu gourp, copy the webhook url and paste it in the lark_sender function
-def lark_sender(webhook_url: str=None, content: str=None):
+def lark_sender(webhook_url: str=None, content: str=None, task=''):
     """Lark sender wrapper: execute func, send a Lark notification with the end status
     (sucessfully finished or crashed) at the end. Also send a Lark notification before
     executing func.
@@ -49,6 +49,7 @@ def lark_sender(webhook_url: str=None, content: str=None):
                     end_time = datetime.now()
                     elapsed_time = end_time - start_time
                     contents = ["Your training has crashed ☠️",
+                                'Task: %s' % task,
                                 'Machine name: %s' % host_name,
                                 'Main call: %s' % func_name,
                                 'Starting date: %s' % start_time.strftime(DATE_FORMAT),
@@ -77,6 +78,7 @@ def lark_sender(webhook_url: str=None, content: str=None):
 
             if master_process:
                 contents = ['Your program has started 🎬',
+                            'Task: %s' % task,
                             'Machine name: %s' % host_name,
                             'Main call: %s' % func_name,
                             'Starting date: %s' % start_time.strftime(DATE_FORMAT)]
@@ -89,6 +91,7 @@ def lark_sender(webhook_url: str=None, content: str=None):
                     end_time = datetime.now()
                     elapsed_time = end_time - start_time
                     contents = ["Your program is complete 🎉",
+                                'Task: %s' % task,
                                 'Machine name: %s' % host_name,
                                 'Main call: %s' % func_name,
                                 'Starting date: %s' % start_time.strftime(DATE_FORMAT),
@@ -109,6 +112,7 @@ def lark_sender(webhook_url: str=None, content: str=None):
                 end_time = datetime.now()
                 elapsed_time = end_time - start_time
                 contents = ["Your training has crashed ☠️",
+                            'Task: %s' % task,
                             'Machine name: %s' % host_name,
                             'Main call: %s' % func_name,
                             'Starting date: %s' % start_time.strftime(DATE_FORMAT),
