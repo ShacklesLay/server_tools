@@ -8,6 +8,12 @@ Modified from [Luther-Sparks/GPTWrapper (github.com)](https://github.com/Luther-
 larknotice会在程序运行、程序出错和程序结束时通过飞书机器人汇报相关内容。
 ![image](https://github.com/user-attachments/assets/06c37fe6-d640-48c9-a2a5-681db47e72ab)
 
+如果想要在汇报内容中加入当前任务名称，可以向被`lark_sender()`装饰的函数传入参数`lark_task`。具体代码样例可见README底部。效果如下所示：
+
+
+![image](https://github.com/user-attachments/assets/48aa1fd8-9586-4489-8322-fb83d01717f8)
+
+
 
 #### 前置条件
 
