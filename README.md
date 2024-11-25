@@ -32,9 +32,10 @@ sys.path.append("/remote-home1/cktan/server_tools/") # Change to your `server_to
 from larknotice import lark_sender
 
 @lark_sender(webhook_url=your_webhook_url)
-def train():
+def train(lark_task):
     print('training...')
     return 
 
-train()
+lark_task='Traing Llava'
+train(lark_task=lark_task)
 ```

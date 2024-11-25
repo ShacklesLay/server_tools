@@ -8,7 +8,7 @@ import traceback
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 # Copy from https://github.com/Luther-Sparks/GPTWrapper/blob/master/larknotice.py
 # To set it, just add new larkbot in feishu gourp, copy the webhook url and paste it in the lark_sender function
-def lark_sender(webhook_url: str=None, content: str=None, task=''):
+def lark_sender(webhook_url: str=None, content: str=None):
     """Lark sender wrapper: execute func, send a Lark notification with the end status
     (sucessfully finished or crashed) at the end. Also send a Lark notification before
     executing func.
@@ -35,7 +35,9 @@ def lark_sender(webhook_url: str=None, content: str=None, task=''):
         @functools.wraps(func)
         def wrapper_sender(*args, **kwargs):
             print(f'start...')
-
+            
+            task = kwargs.get('lark_task', 'Default')
+            
             start_time = datetime.now()
             host_name = socket.gethostname()
             func_name = func.__name__
@@ -111,18 +113,19 @@ def lark_sender(webhook_url: str=None, content: str=None, task=''):
             except Exception as ex:
                 end_time = datetime.now()
                 elapsed_time = end_time - start_time
-                contents = ["Your training has crashed ☠️",
-                            'Task: %s' % task,
-                            'Machine name: %s' % host_name,
-                            'Main call: %s' % func_name,
-                            'Starting date: %s' % start_time.strftime(DATE_FORMAT),
-                            'Crash date: %s' % end_time.strftime(DATE_FORMAT),
-                            'Crashed training duration: %s\n\n' % str(elapsed_time),
-                            "Here's the error:",
-                            '%s\n\n' % ex,
-                            "Traceback:",
-                            '%s' % traceback.format_exc()]
-                bot.send(content='\n'.join(contents))
+                if master_process:
+                    contents = ["Your training has crashed ☠️",
+                                'Task: %s' % task,
+                                'Machine name: %s' % host_name,
+                                'Main call: %s' % func_name,
+                                'Starting date: %s' % start_time.strftime(DATE_FORMAT),
+                                'Crash date: %s' % end_time.strftime(DATE_FORMAT),
+                                'Crashed training duration: %s\n\n' % str(elapsed_time),
+                                "Here's the error:",
+                                '%s\n\n' % ex,
+                                "Traceback:",
+                                '%s' % traceback.format_exc()]
+                    bot.send(content='\n'.join(contents))
                 raise ex
 
         return wrapper_sender
